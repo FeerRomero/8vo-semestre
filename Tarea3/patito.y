@@ -92,7 +92,23 @@ EXPRE1		: GT EXP
 
 %%
 int main(void) {
-	return yyparse();
+	char nombreArch[50];
+	FILE *inputFile;
+	printf("Inserte nombre de archivo: \n");
+	gets(nombreArch);
+	inputFile = fopen(nombreArch, "r");
+
+	if(inputFile == NULL) {
+		perror("No se encontró el archivo. \n");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		yyin = inputFile;
+	}
+
+	//return yyparse();
+	return 0;
 }
 void yyerror(char *s) {
 	fprintf (stderr, "%s\n", s);
