@@ -1,0 +1,10 @@
+yacc -d patito.y
+lex myscanner.l
+gcc lex.yy.c y.tab.c -o patito
+
+./patito
+
+
+***PRUEBAS***
+input.txt
+fail.txt
