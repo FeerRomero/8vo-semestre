@@ -3,7 +3,7 @@
 #define SEMI_COLON 3
 #define VARIABLE 4
 #define COMMA 5
-#define COLON 6
+#define COLON_SIGN 6
 #define INTEGER 7
 #define FLOAT 8
 #define LEFT_BRACKET 9
@@ -22,3 +22,4 @@
 #define CTE_L 22
 #define CTE_F 23
 #define PERIOD 24
+#define IDENTIFIER 25

@@ -1,9 +1,11 @@
 %start PROGRAMA
 %token COLON_SIGN SEMI_COLON COMMA INTEGER FLOAT LEFT_BRACKET RIGHT_BRACKET EQUALS PRINT LEFT_PARENTHESIS RIGHT_PARENTHESIS PERIOD ADDITION SUBSTRACTION MULTIPLICATION DIVISION IF_CLAUSE ELSE_CLAUSE PROGRAM IDENTIFIER VARIABLE STRING CTE_L CTE_F GT LT DIFFERENT
 %{
+//Referencia: https://lists.gnu.org/archive/html/help-bison/2003-02/msg00054.html
 void yyerror (char *s);
 #include <stdio.h>
 #include <stdlib.h>
+extern FILE *yyin;
 %}
 
 %%
@@ -107,8 +109,8 @@ int main(void) {
 		yyin = inputFile;
 	}
 
-	//return yyparse();
-	return 0;
+	return yyparse();
+	//return 0;
 }
 void yyerror(char *s) {
 	fprintf (stderr, "%s\n", s);

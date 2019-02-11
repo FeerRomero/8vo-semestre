@@ -64,11 +64,13 @@
 /* Copy the first part of user declarations.  */
 #line 3 "patito.y" /* yacc.c:339  */
 
+//Referencia: https://lists.gnu.org/archive/html/help-bison/2003-02/msg00054.html
 void yyerror (char *s);
 #include <stdio.h>
 #include <stdlib.h>
+extern FILE *yyin;
 
-#line 72 "y.tab.c" /* yacc.c:339  */
+#line 74 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -177,7 +179,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 181 "y.tab.c" /* yacc.c:358  */
+#line 183 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -477,11 +479,11 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    10,    10,    12,    13,    16,    18,    20,    21,    22,
-      25,    26,    29,    30,    32,    33,    36,    37,    38,    41,
-      44,    46,    47,    48,    49,    51,    54,    55,    57,    58,
-      61,    62,    64,    65,    68,    69,    72,    73,    75,    76,
-      77,    80,    81,    82,    85,    86,    88,    89,    90
+       0,    12,    12,    14,    15,    18,    20,    22,    23,    24,
+      27,    28,    31,    32,    34,    35,    38,    39,    40,    43,
+      46,    48,    49,    50,    51,    53,    56,    57,    59,    60,
+      63,    64,    66,    67,    70,    71,    74,    75,    77,    78,
+      79,    82,    83,    84,    87,    88,    90,    91,    92
 };
 #endif
 
@@ -1308,13 +1310,13 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 10 "patito.y" /* yacc.c:1646  */
-    {printf("apropiado"); exit(EXIT_SUCCESS);}
-#line 1314 "y.tab.c" /* yacc.c:1646  */
+#line 12 "patito.y" /* yacc.c:1646  */
+    {printf("apropiado\n"); exit(EXIT_SUCCESS);}
+#line 1316 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1318 "y.tab.c" /* yacc.c:1646  */
+#line 1320 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1542,10 +1544,26 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 93 "patito.y" /* yacc.c:1906  */
+#line 95 "patito.y" /* yacc.c:1906  */
 
 int main(void) {
+	char nombreArch[50];
+	FILE *inputFile;
+	printf("Inserte nombre de archivo: \n");
+	gets(nombreArch);
+	inputFile = fopen(nombreArch, "r");
+
+	if(inputFile == NULL) {
+		perror("No se encontró el archivo. \n");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		yyin = inputFile;
+	}
+
 	return yyparse();
+	//return 0;
 }
 void yyerror(char *s) {
 	fprintf (stderr, "%s\n", s);
